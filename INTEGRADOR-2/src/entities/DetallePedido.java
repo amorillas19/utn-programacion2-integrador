@@ -1,6 +1,7 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class DetallePedido extends Base{
@@ -44,14 +45,15 @@ public class DetallePedido extends Base{
         }
     }
 
-    public void mostrarProductos () {
-        toString();
+     /* HABRIA QUE REVISAR ESTE MOSTRAR PRODUCTOS */
+    public List<Producto> mostrarProductos() {
+        return Collections.unmodifiableList(listaProductos);
     }
 
-    public void deleteProducto () {
+    public void deleteProducto (Producto producto) {
         /* TO DO */
-        /* TO DO */
-        /* TO DO */
+        /* asegurar que no sea null */
+        /* y que contains producto */
     }
 
     @Override

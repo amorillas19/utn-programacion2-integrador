@@ -1,6 +1,7 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Categoria extends Base{
@@ -39,19 +40,20 @@ public class Categoria extends Base{
 
     public void addProducto (Producto producto){
         if (producto != null) {
+            producto.setCategoria(this);
             listaProductos.add(producto);
             System.out.println("Producto agregado exitosamente.");
         }
     }
-
-    public void mostrarProductos() {
-        toString();
+     /* HABRIA QUE REVISAR ESTE MOSTRAR PRODUCTOS */
+    public List<Producto> mostrarProductos() {
+        return Collections.unmodifiableList(listaProductos);
     }
 
-    public void deleteProducto() {
-        /*TO DO */
-        /*TO DO */
-        /*TO DO */
+    public void deleteProducto (Producto producto) {
+        /* TO DO */
+        /* asegurar que no sea null */
+        /* y que contains producto */
     }
 
     @Override
