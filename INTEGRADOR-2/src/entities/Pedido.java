@@ -8,8 +8,9 @@ public class Pedido extends Base implements Calculable{
     private Estado estado;
     private Double total;
     private FormaPago formaPago;
+    private Usuario usuario;
 
-    
+    /* OJO QUE LA LOGICA DE USUARIO ESTA PENDIENTE */
 
     public Pedido() {
     }

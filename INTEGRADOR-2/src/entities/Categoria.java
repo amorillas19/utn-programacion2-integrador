@@ -51,9 +51,18 @@ public class Categoria extends Base{
     }
 
     public void deleteProducto (Producto producto) {
-        /* TO DO */
-        /* asegurar que no sea null */
-        /* y que contains producto */
+        Producto aux = null;
+        if (producto != null) {
+            producto.setCategoria(null);
+            for (Producto pro : listaProductos) {
+                if (pro.equals(producto)) {
+                    aux = pro;
+                    System.out.println("Producto encontrado");
+                }
+            }
+        }
+        listaProductos.remove(aux);
+        System.out.println("Producto " + aux.getNombre() + " borrado exitosamente");
     }
 
     @Override

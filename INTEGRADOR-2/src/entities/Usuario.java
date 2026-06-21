@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.List;
+
 import enums.Rol;
 
 public class Usuario extends Base{
@@ -9,6 +11,7 @@ public class Usuario extends Base{
     private String celular;
     private String password;
     private Rol rol;
+    private List<Pedido> listaPedidos;
     
     public Usuario() {
     }
@@ -69,6 +72,8 @@ public class Usuario extends Base{
     public void setRol(Rol rol) {
         this.rol = rol;
     }
+
+    /* AGREGAR TODO LO QUE ES LA LOGICA DE ADD FIND DELETE PEDIDO*/
 
     @Override
     public String toString() {

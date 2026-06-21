@@ -92,9 +92,29 @@ public class Producto extends Base{
         }else{
             return "Producto [nombre=" + nombre + ", precio=" + precio + ", descripcion=" + descripcion + ", stock="
                     + stock
-                    + ", imagen=" + imagen + ", disponible=" + disponible + ", categoria=" + categoria + "]";
+                    + ", imagen=" + imagen + ", disponible=" + disponible + ", categoria=" + categoria.getNombre() + "]";
         }
 
     }
+
+    @Override
+    public int hashCode() {
+        return nombre.hashCode() * 31 + categoria.hashCode();
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+
+        Producto other = (Producto) obj;
+        return nombre.equals(other.nombre) && descripcion.equals(other.descripcion);
+    }
+
+
+    
 
 }
