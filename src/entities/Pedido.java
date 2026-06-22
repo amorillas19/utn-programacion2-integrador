@@ -1,6 +1,7 @@
 package entities;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,14 +18,27 @@ public class Pedido extends Base implements Calculable {
     /* OJO QUE LA LOGICA DE USUARIO ESTA PENDIENTE */
 
     public Pedido() {
+        super();
     }
 
-    public Pedido(LocalDate fecha, Estado estado, Double total, FormaPago formaPago) {
+    public Pedido(Estado estado, Double total, FormaPago formaPago) {
         super();
         this.fecha = LocalDate.now();
+        this.estado = Estado.PENDIENTE;
+        this.total = 0.0;
+        this.formaPago = formaPago;
+        this.listaDetallesPedidos = new ArrayList<>();
+    }
+
+    public Pedido(Long id, LocalDate fecha, Estado estado, Double total,
+            FormaPago formaPago, Usuario usuario,
+            boolean eliminado, LocalDateTime createdAt) {
+        super(id, eliminado, createdAt);
+        this.fecha = fecha;
         this.estado = estado;
         this.total = total;
         this.formaPago = formaPago;
+        this.usuario = usuario;
         this.listaDetallesPedidos = new ArrayList<>();
     }
 
@@ -64,32 +78,32 @@ public class Pedido extends Base implements Calculable {
         this.usuario = usuario;
     }
 
-    public void addDetallePedido(int cantidad, Producto producto) {
-        DetallePedido detallePedido = new DetallePedido(cantidad, producto);
-        if (detallePedido != null) {
-            listaDetallesPedidos.add(detallePedido);
-        }
+    public void addDetallePedido(int cantidad, Double precioProducto, Producto producto) {
+        listaDetallesPedidos.add(new DetallePedido(cantidad, precioProducto, producto));
     }
 
-    public void findDetallePedidoByProducto(Producto producto) {
-        DetallePedido aux = null;
+    public DetallePedido findDetallePedidoByProducto(Producto producto) {
         for (DetallePedido detallePedido : listaDetallesPedidos) {
             if (detallePedido.getProducto().equals(producto)) {
-                System.out.println("Producto encontrado");
-                aux = detallePedido;
+                System.out.println("El detalle pedido ha sido encontrado");
+                return detallePedido;
             }
         }
-        System.out.println("El detalle pedido es: ");
-        System.out.println(aux);
+        System.out.println("El detalle pedido NO ha sido encontrado");
+        return null;
     }
 
     public void deleteDetallePedidoByProducto(Producto producto) {
         DetallePedido aux = null;
         for (DetallePedido detallePedido : listaDetallesPedidos) {
             if (detallePedido.getProducto().equals(producto)) {
-                System.out.println("Producto encontrado");
                 aux = detallePedido;
+                break;
             }
+        }
+        if (aux == null) {
+            System.out.println("Producto no encontrado");
+            return;
         }
         listaDetallesPedidos.remove(aux);
         System.out.println("Producto removido exitosamente");
@@ -100,14 +114,14 @@ public class Pedido extends Base implements Calculable {
         for (DetallePedido detallePedido : listaDetallesPedidos) {
             totalAux += detallePedido.getSubtotal();
         }
-        System.out.println("El total es de: " + totalAux);
+        this.total = totalAux;
     }
 
     @Override
     public String toString() {
-        return "Pedido [fecha=" + fecha + ", estado=" + estado + ", total=" + total + ", formaPago=" + formaPago
-                + ", usuario=" + usuario + ", listaDetallesPedidos=" + listaDetallesPedidos + "]";
-    };
+        String usr = usuario != null ? usuario.getNombre() + " " + usuario.getApellido() : "-";
+        return String.format("[%d] %s | Estado: %-12s | Pago: %-14s | Total: $%-10.2f | Usuario: %s",
+                getId(), fecha, estado, formaPago, total, usr);
+    }
 
-    
 }

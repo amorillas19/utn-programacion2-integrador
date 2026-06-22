@@ -16,7 +16,8 @@ public class Producto extends Base {
     }
 
     /* Categoria se recibe por setter */
-    public Producto(String nombre, double precio, String descripcion, int stock, String imagen, boolean disponible) {
+    public Producto(String nombre, double precio, String descripcion, 
+        int stock, String imagen, boolean disponible, Categoria categoria) {
         super();
         this.nombre = nombre;
         this.precio = precio;
@@ -24,6 +25,7 @@ public class Producto extends Base {
         this.stock = stock;
         this.imagen = imagen;
         this.disponible = disponible;
+        this.categoria = categoria;
     }
 
     public Producto(Long id, String nombre, Double precio, String descripcion,

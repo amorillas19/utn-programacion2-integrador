@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class DetallePedido extends Base{
+
     private int cantidad;
     private double subtotal;
     private Producto producto;
@@ -16,10 +17,11 @@ public class DetallePedido extends Base{
         super();
     }
 
-    public DetallePedido(int cantidad, Producto producto) {
+    public DetallePedido(int cantidad, Double precioUnitario, Producto producto) {
         super();
         this.cantidad = cantidad;
         this.producto = producto;
+        this.precioUnitario =  precioUnitario;
         this.subtotal = calcular();
     }
 
@@ -56,16 +58,35 @@ public class DetallePedido extends Base{
     }
 
     public void setProducto(Producto producto) {
-        this.producto = producto;
+        this.producto       = producto;
+        this.precioUnitario = producto != null ? producto.getPrecio() : this.precioUnitario;
+        this.subtotal       = calcular();
+    }
+
+    public Double getPrecioUnitario() {
+        return precioUnitario;
+    }
+
+    public void setPrecioUnitario(Double p) {
+        this.precioUnitario = p;
         this.subtotal = calcular();
     }
 
+    public Long getPedidoId() {
+        return pedidoId;
+    }
 
+    public void setPedidoId(Long pedidoId) {
+        this.pedidoId = pedidoId;
+    }
 
     @Override
     public String toString() {
-        return "DetallePedido [cantidad=" + cantidad + ", subtotal=" + subtotal + ", producto=" + producto.getNombre() + "]";
+        String prod = producto != null ? producto.getNombre() : "-";
+        return String.format("  %-20s x%-4d $%-10.2f => $%.2f", prod, cantidad, precioUnitario, subtotal);
     }
+
+    
 
 
 

@@ -1,6 +1,20 @@
 package dao;
 
-public class DetallePedidoDAO implements IGenericDAO<DetallePedido> {
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import config.DatabaseConnection;
+import entities.Categoria;
+import entities.DetallePedido;
+import entities.Producto;
+import exception.DAOException;
+
+public class DetallePedidoDAO implements GenericDAO<DetallePedido> {
 
     @Override
     public void create(DetallePedido d) {
@@ -15,10 +29,10 @@ public class DetallePedidoDAO implements IGenericDAO<DetallePedido> {
     @Override
     public void delete(Long id) {
         String sql = "UPDATE detalles_pedido SET eliminado=true WHERE id=?";
-        try (Connection conn = ConexionDB.getConexion();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setLong(1, id);
-            ps.executeUpdate();
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setLong(1, id);
+            stmt.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException("Error al eliminar detalle: " + e.getMessage(), e);
         }
@@ -27,10 +41,10 @@ public class DetallePedidoDAO implements IGenericDAO<DetallePedido> {
     @Override
     public DetallePedido findById(Long id) {
         String sql = buildSelectBase() + "WHERE dp.id=? AND dp.eliminado=false";
-        try (Connection conn = ConexionDB.getConexion();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setLong(1, id);
-            try (ResultSet rs = ps.executeQuery()) {
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setLong(1, id);
+            try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) return mapRow(rs);
             }
         } catch (SQLException e) {
@@ -47,10 +61,10 @@ public class DetallePedidoDAO implements IGenericDAO<DetallePedido> {
     public List<DetallePedido> findByPedidoId(Long pedidoId) {
         String sql = buildSelectBase() + "WHERE dp.pedido_id=? AND dp.eliminado=false";
         List<DetallePedido> list = new ArrayList<>();
-        try (Connection conn = ConexionDB.getConexion();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setLong(1, pedidoId);
-            try (ResultSet rs = ps.executeQuery()) {
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setLong(1, pedidoId);
+            try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) list.add(mapRow(rs));
             }
         } catch (SQLException e) {
@@ -63,14 +77,14 @@ public class DetallePedidoDAO implements IGenericDAO<DetallePedido> {
     public void insertEnTransaccion(DetallePedido d, Long pedidoId, Connection conn) throws SQLException {
         String sql = "INSERT INTO detalles_pedido (cantidad, precio_unitario, subtotal, producto_id, pedido_id, eliminado, created_at) " +
                      "VALUES (?, ?, ?, ?, ?, false, NOW())";
-        try (PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setInt(1, d.getCantidad());
-            ps.setDouble(2, d.getPrecioUnitario());
-            ps.setDouble(3, d.getSubtotal());
-            ps.setLong(4, d.getProducto().getId());
-            ps.setLong(5, pedidoId);
-            ps.executeUpdate();
-            try (ResultSet keys = ps.getGeneratedKeys()) {
+        try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            stmt.setInt(1, d.getCantidad());
+            stmt.setDouble(2, d.getPrecioUnitario());
+            stmt.setDouble(3, d.getSubtotal());
+            stmt.setLong(4, d.getProducto().getId());
+            stmt.setLong(5, pedidoId);
+            stmt.executeUpdate();
+            try (ResultSet keys = stmt.getGeneratedKeys()) {
                 if (keys.next()) d.setId(keys.getLong(1));
             }
         }
