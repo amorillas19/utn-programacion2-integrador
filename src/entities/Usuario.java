@@ -1,5 +1,6 @@
 package entities;
 
+import java.util.Collections;
 import java.util.List;
 
 import enums.Rol;
@@ -17,6 +18,7 @@ public class Usuario extends Base{
     }
 
     public Usuario(String nombre, String apellido, String mail, String celular, String password, Rol rol) {
+        super();
         this.nombre = nombre;
         this.apellido = apellido;
         this.mail = mail;
@@ -73,7 +75,33 @@ public class Usuario extends Base{
         this.rol = rol;
     }
 
-    /* AGREGAR TODO LO QUE ES LA LOGICA DE ADD FIND DELETE PEDIDO*/
+    public void addPedido (Pedido pedido){
+        if (pedido != null) {
+            pedido.setUsuario(this);
+            listaPedidos.add(pedido);
+            System.out.println("Pedido agregado exitosamente.");
+        }
+    }
+     /* HABRIA QUE REVISAR ESTE MOSTRAR PRODUCTOS */
+    public List<Pedido> mostrarPedidos() {
+        return Collections.unmodifiableList(listaPedidos);
+    }
+
+    public void deletePedido (Pedido pedido) {
+        Pedido aux = null;
+        if (pedido != null) {
+            for (Pedido ped : listaPedidos) {
+                if (ped.equals(pedido)) {
+                    aux = ped;
+                    System.out.println("Pedido encontrado");
+                }
+            }
+        }
+        pedido.setUsuario(null);
+        System.out.println("Pedido: " + pedido);
+        System.out.println("Borrado exitosamente");
+        listaPedidos.remove(aux);
+    }
 
     @Override
     public String toString() {

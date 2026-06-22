@@ -4,7 +4,7 @@ import ui.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        /*Categoria c1 = new Categoria("Lacteos", "vaca y vegetales");
+        Categoria c1 = new Categoria("Lacteos", "vaca y vegetales");
         Categoria c2 = new Categoria("Panaderia", "panes y facturas");
         
         Producto pro1 = new Producto("Leche", 399.99, "Almendra", 15, "lechealmendra.png", true);
@@ -20,10 +20,10 @@ public class Main {
         System.out.println("********* BORRAR PRODUCTOS ************");
         c1.deleteProducto(pro1);
         System.out.println(c1);
-        System.out.println(pro1);*/
+        System.out.println(pro1);
 
-        Menu menu = new Menu();
-        menu.mostrarMenu();
+        /*Menu menu = new Menu();
+        menu.mostrarMenu();*/
 
 
         
