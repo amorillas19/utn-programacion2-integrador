@@ -1,11 +1,12 @@
 package entities;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
 import enums.Rol;
 
-public class Usuario extends Base{
+public class Usuario extends Base {
     private String nombre;
     private String apellido;
     private String mail;
@@ -13,12 +14,25 @@ public class Usuario extends Base{
     private String password;
     private Rol rol;
     private List<Pedido> listaPedidos;
-    
+
     public Usuario() {
+        super();
     }
 
     public Usuario(String nombre, String apellido, String mail, String celular, String password, Rol rol) {
         super();
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.mail = mail;
+        this.celular = celular;
+        this.password = password;
+        this.rol = rol;
+    }
+
+    public Usuario(Long id, String nombre, String apellido, String mail,
+            String celular, String password, Rol rol,
+            boolean eliminado, LocalDateTime createdAt) {
+        super(id, eliminado, createdAt);
         this.nombre = nombre;
         this.apellido = apellido;
         this.mail = mail;
@@ -75,19 +89,20 @@ public class Usuario extends Base{
         this.rol = rol;
     }
 
-    public void addPedido (Pedido pedido){
+    public void addPedido(Pedido pedido) {
         if (pedido != null) {
             pedido.setUsuario(this);
             listaPedidos.add(pedido);
             System.out.println("Pedido agregado exitosamente.");
         }
     }
-     /* HABRIA QUE REVISAR ESTE MOSTRAR PRODUCTOS */
+
+    /* HABRIA QUE REVISAR ESTE MOSTRAR PRODUCTOS */
     public List<Pedido> mostrarPedidos() {
         return Collections.unmodifiableList(listaPedidos);
     }
 
-    public void deletePedido (Pedido pedido) {
+    public void deletePedido(Pedido pedido) {
         Pedido aux = null;
         if (pedido != null) {
             for (Pedido ped : listaPedidos) {
@@ -109,5 +124,4 @@ public class Usuario extends Base{
                 + ", password=" + password + ", rol=" + rol + "]";
     }
 
-    
 }
