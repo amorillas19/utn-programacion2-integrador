@@ -7,16 +7,16 @@ import java.util.List;
 public class DetallePedido extends Base{
     private int cantidad;
     private double subtotal;
-    private List<Producto> listaProductos;
+    private Producto producto;
 
     public DetallePedido() {
     }
 
-    public DetallePedido(int cantidad, double subtotal) {
+    public DetallePedido(int cantidad, Producto producto) {
         super();
         this.cantidad = cantidad;
-        this.subtotal = subtotal;
-        this.listaProductos = new ArrayList<>();
+        this.producto = producto;
+        this.subtotal = calcular();
     }
 
     public int getCantidad() {
@@ -25,42 +25,34 @@ public class DetallePedido extends Base{
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+        this.subtotal = calcular();
     }
 
     public double getSubtotal() {
         return subtotal;
     }
 
-    public void setSubtotal(double subtotal) {
-        this.subtotal = subtotal;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public List<Producto> getListaProductos() {
-        return listaProductos;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+        this.subtotal = calcular();
     }
 
-    public void addProducto (Producto producto) {
-        if (producto != null) {
-            listaProductos.add(producto);
-        }
-    }
-
-     /* HABRIA QUE REVISAR ESTE MOSTRAR PRODUCTOS */
-    public List<Producto> mostrarProductos() {
-        return Collections.unmodifiableList(listaProductos);
-    }
-
-    public void deleteProducto (Producto producto) {
-        /* TO DO */
-        /* asegurar que no sea null */
-        /* y que contains producto */
+    private double calcular () {
+        return producto.getPrecio() * cantidad;
     }
 
     @Override
     public String toString() {
-        return "DetallePedido [cantidad=" + cantidad + ", subtotal=" + subtotal + ", listaProductos=" + listaProductos
-                + "]";
+        return "DetallePedido [cantidad=" + cantidad + ", subtotal=" + subtotal + ", producto=" + producto.getNombre() + "]";
     }
+
+
+
+
 
     
 

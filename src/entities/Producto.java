@@ -1,5 +1,6 @@
 package entities;
-public class Producto extends Base{
+
+public class Producto extends Base {
     private String nombre;
     private double precio;
     private String descripcion;
@@ -8,11 +9,10 @@ public class Producto extends Base{
     private boolean disponible;
     private Categoria categoria;
 
-    
     public Producto() {
     }
 
-    /*Categoria se recibe por setter */
+    /* Categoria se recibe por setter */
     public Producto(String nombre, double precio, String descripcion, int stock, String imagen, boolean disponible) {
         super();
         this.nombre = nombre;
@@ -23,61 +23,57 @@ public class Producto extends Base{
         this.disponible = disponible;
     }
 
-
     public String getNombre() {
         return nombre;
     }
-
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
 
     public String getDescripcion() {
         return descripcion;
     }
 
-
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
 
     public int getStock() {
         return stock;
     }
 
-
     public void setStock(int stock) {
         this.stock = stock;
     }
-
 
     public String getImagen() {
         return imagen;
     }
 
-
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
-
 
     public boolean isDisponible() {
         return disponible;
     }
 
-
     public void setDisponible(boolean disponible) {
         this.disponible = disponible;
     }
 
-
     public Categoria getCategoria() {
         return categoria;
     }
-
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
@@ -89,10 +85,11 @@ public class Producto extends Base{
             return "Producto [nombre=" + nombre + ", precio=" + precio + ", descripcion=" + descripcion + ", stock="
                     + stock
                     + ", imagen=" + imagen + ", disponible=" + disponible + ", categoria= null" + "]";
-        }else{
+        } else {
             return "Producto [nombre=" + nombre + ", precio=" + precio + ", descripcion=" + descripcion + ", stock="
                     + stock
-                    + ", imagen=" + imagen + ", disponible=" + disponible + ", categoria=" + categoria.getNombre() + "]";
+                    + ", imagen=" + imagen + ", disponible=" + disponible + ", categoria=" + categoria.getNombre()
+                    + "]";
         }
 
     }
@@ -101,7 +98,6 @@ public class Producto extends Base{
     public int hashCode() {
         return nombre.hashCode() * 31 + categoria.hashCode();
     }
-
 
     @Override
     public boolean equals(Object obj) {
@@ -113,8 +109,5 @@ public class Producto extends Base{
         Producto other = (Producto) obj;
         return nombre.equals(other.nombre) && descripcion.equals(other.descripcion);
     }
-
-
-    
 
 }
