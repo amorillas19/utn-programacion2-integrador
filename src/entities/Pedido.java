@@ -78,6 +78,14 @@ public class Pedido extends Base implements Calculable {
         this.usuario = usuario;
     }
 
+    public List<DetallePedido> getListaDetallesPedidos() {
+        return listaDetallesPedidos;
+    }
+
+    public void setListaDetallesPedidos(List<DetallePedido> listaDetallesPedidos) {
+        this.listaDetallesPedidos = listaDetallesPedidos;
+    }
+
     public void addDetallePedido(int cantidad, Double precioProducto, Producto producto) {
         listaDetallesPedidos.add(new DetallePedido(cantidad, precioProducto, producto));
     }
