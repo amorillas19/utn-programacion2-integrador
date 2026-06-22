@@ -2,52 +2,53 @@ package ui;
 
 import java.util.Scanner;
 
-public class Menu {
-    
-    private Scanner scan;
-    private int opcionMenu;
+import services.*;
 
-    public Menu (){
-        this.scan = new Scanner(System.in);
+public class Menu {
+
+    private final Scanner        scanner;
+    private final CategoriaMenu  categoriaMenu;
+    private final ProductoMenu   productoMenu;
+    private final UsuarioMenu    usuarioMenu;
+    private final PedidoMenu     pedidoMenu;
+
+    public Menu(Scanner scanner,
+                CategoriaService  categoriaService,
+                ProductoService   productoService,
+                UsuarioService    usuarioService,
+                PedidoService     pedidoService) {
+        this.scanner       = scanner;
+        this.categoriaMenu = new CategoriaMenu(scanner, categoriaService);
+        this.productoMenu  = new ProductoMenu(scanner, productoService, categoriaService);
+        this.usuarioMenu   = new UsuarioMenu(scanner, usuarioService);
+        this.pedidoMenu    = new PedidoMenu(scanner, pedidoService, usuarioService, productoService);
     }
 
-    public void mostrarMenu() {
-        String menu = """
-        ***FOOD STORE***
-        == SISTEMA DE PEDIDOS ==
-        
-        1. Categorías
-        2. Productos
-        3. Usuarios
-        4. Pedidos
-        0. Salir
-
-        Seleccione: """;
-        
-        while (true) {
-            System.out.print(menu);
-            opcionMenu = Integer.valueOf(scan.next());
-            switch (opcionMenu) {
-                case 1:
-                    System.out.println("Categorias");
-                    break;
-                case 2:
-                    System.out.println("Productos");
-                    break;
-                case 3:
-                    System.out.println("Usuarios");
-                    break;
-                case 4:
-                    System.out.println("Pedidos");
-                    break;
-                case 0:
-                    System.out.println("Gracias por usar el sistema!");
-                    break;
-                default:
-                    System.out.println("Opcion incorrecta, por favor, ingrese una valida");
-                    break;
+    public void mostrar() {
+        int opcion;
+        do {
+            System.out.println("\n=== SISTEMA DE PEDIDOS (FOOD STORE) ===");
+            System.out.println("1. Categorías");
+            System.out.println("2. Productos");
+            System.out.println("3. Usuarios");
+            System.out.println("4. Pedidos");
+            System.out.println("0. Salir");
+            opcion = leerOpcion();
+            switch (opcion) {
+                case 1 -> categoriaMenu.mostrar();
+                case 2 -> productoMenu.mostrar();
+                case 3 -> usuarioMenu.mostrar();
+                case 4 -> pedidoMenu.mostrar();
+                case 0 -> System.out.println("Hasta luego.");
+                default -> System.out.println("Opción inválida.");
             }
-        }
+        } while (opcion != 0);
+    }
 
+    private int leerOpcion() {
+        System.out.print("Seleccione: ");
+        try { return Integer.parseInt(scanner.nextLine().trim()); }
+        catch (NumberFormatException e) { return -1; }
     }
 }
+
