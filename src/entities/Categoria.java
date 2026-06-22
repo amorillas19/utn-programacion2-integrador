@@ -1,5 +1,6 @@
 package entities;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -9,13 +10,20 @@ public class Categoria extends Base{
     private String descripcion;
     private List<Producto> listaProductos;
 
-    public Categoria(){}
+    public Categoria() {
+    }
 
     public Categoria(String nombre, String descripcion) {
         super();
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.listaProductos = new ArrayList<>();
+    }
+
+    public Categoria(Long id, String nombre, String descripcion, boolean eliminado, LocalDateTime createdAt) {
+        super(id, eliminado, createdAt);
+        this.nombre = nombre;
+        this.descripcion = descripcion;
     }
 
     public String getNombre() {
@@ -34,6 +42,8 @@ public class Categoria extends Base{
         this.descripcion = descripcion;
     }
 
+    
+
     public List<Producto> getListaProductos() {
         return listaProductos;
     }
@@ -45,7 +55,7 @@ public class Categoria extends Base{
             System.out.println("Producto agregado exitosamente.");
         }
     }
-     /* HABRIA QUE REVISAR ESTE MOSTRAR PRODUCTOS */
+
     public List<Producto> mostrarProductos() {
         return Collections.unmodifiableList(listaProductos);
     }

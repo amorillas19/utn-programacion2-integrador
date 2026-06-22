@@ -1,5 +1,7 @@
 package entities;
 
+import java.time.LocalDateTime;
+
 public class Producto extends Base {
     private String nombre;
     private double precio;
@@ -10,6 +12,7 @@ public class Producto extends Base {
     private Categoria categoria;
 
     public Producto() {
+        super();
     }
 
     /* Categoria se recibe por setter */
@@ -21,6 +24,19 @@ public class Producto extends Base {
         this.stock = stock;
         this.imagen = imagen;
         this.disponible = disponible;
+    }
+
+    public Producto(Long id, String nombre, Double precio, String descripcion,
+            int stock, String imagen, boolean disponible,
+            boolean eliminado, LocalDateTime createdAt, Categoria categoria) {
+        super(id, eliminado, createdAt);
+        this.nombre = nombre;
+        this.precio = precio;
+        this.descripcion = descripcion;
+        this.stock = stock;
+        this.imagen = imagen;
+        this.disponible = disponible;
+        this.categoria = categoria;
     }
 
     public String getNombre() {
