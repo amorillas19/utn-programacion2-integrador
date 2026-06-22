@@ -42,8 +42,6 @@ public class Categoria extends Base{
         this.descripcion = descripcion;
     }
 
-    
-
     public List<Producto> getListaProductos() {
         return listaProductos;
     }
