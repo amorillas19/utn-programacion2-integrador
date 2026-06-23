@@ -32,8 +32,3 @@ src/
 └── ui/           # Interfaz de usuario interactiva por consola (Punto de entrada)
 ## Crear la Base de Datos 🗄️
 ```
-Para iniciar la aplicación, es necesario crear la estructura relacional en tu servidor local de MySQL. Pasos:
-1. Abre tu gestor de base de datos preferido (MySQL Workbench, phpMyAdmin o la terminal de MySQL).
-2. Ejecuta la siguiente sentencia para crear la base de datos:
-   ```sql
-   CREATE DATABASE tp10;
