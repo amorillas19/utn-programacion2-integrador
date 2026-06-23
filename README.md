@@ -30,5 +30,4 @@ src/
 ├── exception/    # Centralización de excepciones personalizadas (DAOException)
 ├── services/     # Capa intermedia para la orquestación y reglas de negocio
 └── ui/           # Interfaz de usuario interactiva por consola (Punto de entrada)
-## Crear la Base de Datos 🗄️
 ```
