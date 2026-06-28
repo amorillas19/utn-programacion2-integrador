@@ -1,50 +1,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-<modelVersion>4.0.0</modelVersion>
-<groupId>integrado.prog2</groupId>
-<artifactId>food-store</artifactId>
-<version>1.0-SNAPSHOT</version>
-<packaging>jar</packaging>
-<properties>
-<maven.compiler.source>21</maven.compiler.source>
-<maven.compiler.target>21</maven.compiler.target>
-<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-</properties>
-<dependencies>
-<dependency>
-<groupId>com.mysql</groupId>
-<artifactId>mysql-connector-j</artifactId>
-<version>8.3.0</version>
-</dependency>
-</dependencies>
-<build>
-<!--  La raiz real de tus fuentes es src/, no src/main/java/
-             porque tus packages son main.java.config, main.java.dao, etc.  -->
-<sourceDirectory>src</sourceDirectory>
-<plugins>
-<!--  Para correr desde NetBeans (Run Project) o con: mvn exec:java  -->
-<plugin>
-<groupId>org.codehaus.mojo</groupId>
-<artifactId>exec-maven-plugin</artifactId>
-<version>3.1.0</version>
-<configuration>
-<mainClass>main.java.Main</mainClass>
-</configuration>
-</plugin>
-<!--  Para generar el JAR ejecutable con las dependencias en lib/  -->
-<plugin>
-<groupId>org.apache.maven.plugins</groupId>
-<artifactId>maven-jar-plugin</artifactId>
-<version>3.3.0</version>
-<configuration>
-<archive>
-<manifest>
-<mainClass>main.java.Main</mainClass>
-<addClasspath>true</addClasspath>
-<classpathPrefix>lib/</classpathPrefix>
-</manifest>
-</archive>
-</configuration>
-</plugin>
-</plugins>
-</build>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>integrado.prog2</groupId>
+    <artifactId>food-store</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.3.0</version>
+        </dependency>
+    </dependencies>
 </project>
