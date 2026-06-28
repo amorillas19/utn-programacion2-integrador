@@ -1,19 +1,34 @@
-## TRABAJO PRACTICO INTEGRADOR
-## Programacion II
+# Sistema de Gestión de Pedidos 🛒
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Este proyecto es una aplicación de consola robusta desarrollada en **Java SE** orientada a la gestión integral de un catálogo de productos estructurado por categorías, el control de usuarios con roles definidos y la administración atómica de pedidos de compra con sus respectivos desgloses.
 
-## Folder Structure
+El sistema implementa persistencia de datos en un motor **MySQL** utilizando **JDBC nativo**, siguiendo buenas prácticas de diseño y arquitectura en capas.
 
-The workspace contains two folders by default, where:
+## 🚀 Características Principales
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+- **Arquitectura en Capas Decopladas:** Separación clara de responsabilidades (`ui`, `services`, `dao`, `entities`, `config`, `enums`, `exception`).
+- **Patrón Generic DAO:** Abstracción completa de las operaciones CRUD mediante interfaces parametrizadas.
+- **Control de Transacciones Manual:** Garantiza la atomicidad al registrar pedidos complejos (cabecera y múltiples detalles bajo la misma transacción con control de *commit* y *rollback*).
+- **Mapeo de Datos Manual (Row Mapping):** Transformación segura de tuplas relacionales a instancias orientadas a objetos, controlando valores nulos y tipos temporales (`LocalDateTime`).
+- **Borrado Lógico (Soft Delete):** Implementación de bajas lógicas compartidas a través de una clase abstracta `Base`, protegiendo la integridad referencial histórica del sistema.
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+## 🛠️ Tecnologías Utilizadas
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+- **Lenguaje:** Java SE (JDK 17 o superior)
+- **Base de Datos:** MySQL Server
+- **Conectividad:** JDBC (Java Database Connectivity) con el driver oficial `com.mysql.cj.jdbc.Driver`
+- **Gestión del Entorno:** Consola/Terminal Interactiva
 
-## Dependency Management
+## 📂 Estructura del Proyecto
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+```text
+src/
+├── config/       # Conectividad estática y manejo de la base de datos (DatabaseConnection)
+├── dao/          # Interfases y clases de persistencia pura (Consultas SQL)
+├── entities/     # Modelo de dominio del problema (Clases de negocio y contratos)
+├── enums/        # Tipos estáticos para control de estados, roles y formas de pago
+├── exception/    # Centralización de excepciones personalizadas (DAOException)
+├── services/     # Capa intermedia para la orquestación y reglas de negocio
+└── ui/           # Interfaz de usuario interactiva por consola (Punto de entrada)
+```
+
