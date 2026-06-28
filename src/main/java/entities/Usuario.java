@@ -1,10 +1,10 @@
-package main.java.entities;
+﻿package entities;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
-import main.java.enums.Rol;
+import enums.Rol;
 
 public class Usuario extends Base {
     private String nombre;

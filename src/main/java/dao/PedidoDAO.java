@@ -1,4 +1,4 @@
-package main.java.dao;
+﻿package dao;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -9,14 +9,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.config.DatabaseConnection;
-import main.java.entities.DetallePedido;
-import main.java.entities.Pedido;
-import main.java.entities.Usuario;
-import main.java.enums.Estado;
-import main.java.enums.FormaPago;
-import main.java.enums.Rol;
-import main.java.exception.DAOException;
+import config.DatabaseConnection;
+import entities.DetallePedido;
+import entities.Pedido;
+import entities.Usuario;
+import enums.Estado;
+import enums.FormaPago;
+import enums.Rol;
+import exception.DAOException;
 
 public class PedidoDAO implements GenericDAO<Pedido> {
 

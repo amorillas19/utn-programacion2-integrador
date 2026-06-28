@@ -1,9 +1,9 @@
-package main.java.services;
+﻿package services;
 
 import java.util.List;
 
-import main.java.dao.DetallePedidoDAO;
-import main.java.entities.DetallePedido;
+import dao.DetallePedidoDAO;
+import entities.DetallePedido;
 
 public class DetallePedidoService {
 

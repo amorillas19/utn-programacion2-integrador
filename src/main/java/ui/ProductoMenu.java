@@ -1,11 +1,11 @@
-package main.java.ui;
+﻿package ui;
 
 import java.util.List;
 import java.util.Scanner;
 
-import main.java.entities.*;
-import main.java.exception.*;
-import main.java.services.*;
+import entities.*;
+import exception.*;
+import services.*;
 
 public class ProductoMenu {
 

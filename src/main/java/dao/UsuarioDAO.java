@@ -1,4 +1,4 @@
-package main.java.dao;
+﻿package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,10 +8,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.config.DatabaseConnection;
-import main.java.entities.Usuario;
-import main.java.enums.Rol;
-import main.java.exception.DAOException;
+import config.DatabaseConnection;
+import entities.Usuario;
+import enums.Rol;
+import exception.DAOException;
 
 public class UsuarioDAO implements GenericDAO<Usuario> {
 

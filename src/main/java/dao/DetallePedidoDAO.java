@@ -1,4 +1,4 @@
-package main.java.dao;
+﻿package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,11 +8,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.config.DatabaseConnection;
-import main.java.entities.Categoria;
-import main.java.entities.DetallePedido;
-import main.java.entities.Producto;
-import main.java.exception.DAOException;
+import config.DatabaseConnection;
+import entities.Categoria;
+import entities.DetallePedido;
+import entities.Producto;
+import exception.DAOException;
 
 public class DetallePedidoDAO implements GenericDAO<DetallePedido> {
 

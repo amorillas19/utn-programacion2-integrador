@@ -1,10 +1,10 @@
-package main.java.services;
+﻿package services;
 
 import java.util.List;
 
-import main.java.dao.CategoriaDAO;
-import main.java.entities.Categoria;
-import main.java.exception.*;
+import dao.CategoriaDAO;
+import entities.Categoria;
+import exception.*;
 
 public class CategoriaService {
 

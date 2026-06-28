@@ -1,11 +1,11 @@
-package main.java.ui;
+﻿package ui;
 
 import java.util.List;
 import java.util.Scanner;
 
-import main.java.entities.Categoria;
-import main.java.exception.*;
-import main.java.services.CategoriaService;
+import entities.Categoria;
+import exception.*;
+import services.CategoriaService;
 
 public class CategoriaMenu {
 

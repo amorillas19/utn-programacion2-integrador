@@ -1,8 +1,8 @@
-package main.java.ui;
+﻿package ui;
 
 import java.util.Scanner;
 
-import main.java.services.*;
+import services.*;
 
 public class Menu {
 

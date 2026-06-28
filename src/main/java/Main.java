@@ -1,10 +1,8 @@
-package main.java;
+﻿import java.util.Scanner;
 
-import java.util.Scanner;
-
-import main.java.dao.*;
-import main.java.services.*;
-import main.java.ui.*;
+import dao.*;
+import services.*;
+import ui.*;
 
 public class Main {
 

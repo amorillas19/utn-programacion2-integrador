@@ -1,12 +1,12 @@
-package main.java.services;
+﻿package services;
 
 import java.util.List;
 
-import main.java.dao.CategoriaDAO;
-import main.java.dao.ProductoDAO;
-import main.java.entities.Categoria;
-import main.java.entities.Producto;
-import main.java.exception.*;
+import dao.CategoriaDAO;
+import dao.ProductoDAO;
+import entities.Categoria;
+import entities.Producto;
+import exception.*;
 
 public class ProductoService {
 

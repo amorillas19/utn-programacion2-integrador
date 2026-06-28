@@ -1,11 +1,11 @@
-package main.java.entities;
+﻿package entities;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.enums.*;
+import enums.*;
 
 public class Pedido extends Base implements Calculable {
     private LocalDate fecha;
