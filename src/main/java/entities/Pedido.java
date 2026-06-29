@@ -15,8 +15,6 @@ public class Pedido extends Base implements Calculable {
     private Usuario usuario;
     private List<DetallePedido> listaDetallesPedidos;
 
-    /* OJO QUE LA LOGICA DE USUARIO ESTA PENDIENTE */
-
     public Pedido() {
         super();
         this.listaDetallesPedidos = new ArrayList<>();

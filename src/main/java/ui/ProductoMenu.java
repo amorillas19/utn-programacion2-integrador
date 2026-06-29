@@ -60,7 +60,7 @@ public class ProductoMenu {
             boolean disponible  = leerSiNo("¿Disponible?");
             long    catId       = leerLong("ID de categoría: ");
             service.crear(nombre, precio, descripcion, stock, imagen, disponible, catId);
-            System.out.println("✓ Producto creado.");
+            System.out.println("Producto creado.");
         } catch (ValidationException | DAOException e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -90,7 +90,7 @@ public class ProductoMenu {
             long    cat  = catStr.isBlank()      ? actual.getCategoria().getId(): Long.parseLong(catStr);
 
             service.actualizar(id, nom, prec, desc, stk, img, disp, cat);
-            System.out.println("✓ Producto actualizado.");
+            System.out.println("Producto actualizado.");
         } catch (ValidationException | DAOException | NumberFormatException e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -107,7 +107,7 @@ public class ProductoMenu {
                 return;
             }
             service.eliminar(id);
-            System.out.println("✓ Producto eliminado.");
+            System.out.println("Producto eliminado.");
         } catch (ValidationException | DAOException e) {
             System.out.println("Error: " + e.getMessage());
         }

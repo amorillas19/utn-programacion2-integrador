@@ -111,8 +111,10 @@ public class UsuarioMenu {
         while (true) {
             System.out.print("Rol (1=ADMIN, 2=USUARIO): ");
             String v = scanner.nextLine().trim();
-            if (v.equals("1")) return Rol.ADMIN;
-            if (v.equals("2")) return Rol.USUARIO;
+            if (v.equals("1"))
+                return Rol.ADMIN;
+            if (v.equals("2"))
+                return Rol.USUARIO;
             System.out.println("Opción inválida.");
         }
     }

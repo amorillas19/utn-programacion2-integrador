@@ -97,7 +97,6 @@ public class Usuario extends Base {
         }
     }
 
-    /* HABRIA QUE REVISAR ESTE MOSTRAR PRODUCTOS */
     public List<Pedido> mostrarPedidos() {
         return Collections.unmodifiableList(listaPedidos);
     }
