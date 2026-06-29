@@ -39,9 +39,8 @@ public class PedidoService {
 
     public Pedido iniciarPedido(Long usuarioId, FormaPago formaPago) {
         Usuario usuario = validarUsuario(usuarioId);
-        Pedido pedido = new Pedido();
+        Pedido pedido = new Pedido(Estado.PENDIENTE, 0.0, formaPago);
         pedido.setUsuario(usuario);
-        pedido.setFormaPago(formaPago);
         return pedido;
     }
 
@@ -50,6 +49,7 @@ public class PedidoService {
         Producto prod = productoDAO.findById(productoId);
         if (prod == null) throw new ValidationException("No existe un producto activo con id: " + productoId);
         if (!prod.isDisponible()) throw new ValidationException("El producto '" + prod.getNombre() + "' no está disponible.");
+        if (cantidad > prod.getStock()) throw new ValidationException("Stock insuficiente para '" + prod.getNombre() + "'. Disponible: " + prod.getStock());
         pedido.addDetallePedido(cantidad, prod.getPrecio(), prod);
     }
 

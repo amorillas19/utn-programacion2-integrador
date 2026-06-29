@@ -19,6 +19,7 @@ public class Pedido extends Base implements Calculable {
 
     public Pedido() {
         super();
+        this.listaDetallesPedidos = new ArrayList<>();
     }
 
     public Pedido(Estado estado, Double total, FormaPago formaPago) {

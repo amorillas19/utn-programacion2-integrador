@@ -168,7 +168,8 @@ public class PedidoDAO implements GenericDAO<Pedido> {
                        u.eliminado  AS usr_eliminado,
                        u.created_at AS usr_created
                 FROM pedidos p
-                JOIN usuarios u ON p.usuario_id = u.id""";
+                JOIN usuarios u ON p.usuario_id = u.id
+                """;
     }
 
     private Pedido mapRow(ResultSet rs) throws SQLException {

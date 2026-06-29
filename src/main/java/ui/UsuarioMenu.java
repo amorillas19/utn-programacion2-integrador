@@ -57,7 +57,7 @@ public class UsuarioMenu {
             String contrasena = leerTexto("Contraseña: ");
             Rol    rol        = leerRol();
             service.crear(nombre, apellido, mail, celular, contrasena, rol);
-            System.out.println("✓ Usuario creado.");
+            System.out.println("Usuario creado.");
         } catch (ValidationException | DAOException e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -84,7 +84,7 @@ public class UsuarioMenu {
             Rol    rol  = rolStr.isBlank()     ? actual.getRol()       : (rolStr.equals("1") ? Rol.ADMIN : Rol.USUARIO);
 
             service.actualizar(id, nom, ape, ml, cel, pwd, rol);
-            System.out.println("✓ Usuario actualizado.");
+            System.out.println("Usuario actualizado.");
         } catch (ValidationException | DAOException e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -101,7 +101,7 @@ public class UsuarioMenu {
                 return;
             }
             service.eliminar(id);
-            System.out.println("✓ Usuario eliminado.");
+            System.out.println("Usuario eliminado.");
         } catch (ValidationException | DAOException e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -123,7 +123,7 @@ public class UsuarioMenu {
         while (true) {
             System.out.print(prompt);
             try { return Integer.parseInt(scanner.nextLine().trim()); }
-            catch (NumberFormatException e) { System.out.println("Ingrese un número válido."); }
+            catch (NumberFormatException e) { System.out.println("Ingrese un número valido."); }
         }
     }
 
@@ -131,7 +131,7 @@ public class UsuarioMenu {
         while (true) {
             System.out.print(prompt);
             try { return Long.parseLong(scanner.nextLine().trim()); }
-            catch (NumberFormatException e) { System.out.println("Ingrese un número válido."); }
+            catch (NumberFormatException e) { System.out.println("Ingrese un número valido."); }
         }
     }
 
@@ -140,7 +140,7 @@ public class UsuarioMenu {
             System.out.print(prompt);
             String v = scanner.nextLine().trim();
             if (!v.isBlank()) return v;
-            System.out.println("El campo no puede estar vacío.");
+            System.out.println("El campo no puede estar vacio.");
         }
     }
 
