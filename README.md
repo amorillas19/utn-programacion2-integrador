@@ -16,7 +16,7 @@ El sistema implementa persistencia de datos en un motor **MySQL** utilizando **J
 
 - **Lenguaje:** Java SE (JDK 17 o superior)
 - **Base de Datos:** MySQL Server
-- **Conectividad:** JDBC (Java Database Connectivity) con el driver oficial `com.mysql.cj.jdbc.Driver`
+- **Conectividad:** JDBC (Java Database Connectivity) con el driver oficial `com.mysql.cj.jdbc.Driver` a traves de Maven
 - **Gestión del Entorno:** Consola/Terminal Interactiva
 
 ## 📂 Estructura del Proyecto
