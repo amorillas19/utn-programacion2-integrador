@@ -5,6 +5,7 @@ import java.util.List;
 import dao.PedidoDAO;
 import dao.ProductoDAO;
 import dao.UsuarioDAO;
+import entities.DetallePedido;
 import entities.Pedido;
 import entities.Producto;
 import entities.Usuario;
@@ -49,8 +50,17 @@ public class PedidoService {
         Producto prod = productoDAO.findById(productoId);
         if (prod == null) throw new ValidationException("No existe un producto activo con id: " + productoId);
         if (!prod.isDisponible()) throw new ValidationException("El producto '" + prod.getNombre() + "' no está disponible.");
-        if (cantidad > prod.getStock()) throw new ValidationException("Stock insuficiente para '" + prod.getNombre() + "'. Disponible: " + prod.getStock());
-        pedido.addDetallePedido(cantidad, prod.getPrecio(), prod);
+
+        DetallePedido existente = pedido.findDetallePedidoByProducto(prod);
+        int cantidadTotal = (existente != null ? existente.getCantidad() : 0) + cantidad;
+        if (cantidadTotal > prod.getStock())
+            throw new ValidationException("Stock insuficiente para '" + prod.getNombre() + "'. Disponible: " + prod.getStock() + ", ya en pedido: " + (existente != null ? existente.getCantidad() : 0));
+
+        if (existente != null) {
+            existente.setCantidad(cantidadTotal);
+        } else {
+            pedido.addDetallePedido(cantidad, prod.getPrecio(), prod);
+        }
     }
 
     public void confirmarPedido(Pedido pedido) {
