@@ -76,6 +76,10 @@ public class Categoria extends Base {
 
     @Override
     public String toString() {
-        return "Categoria [id=" + getId() + ", nombre=" + nombre + ", descripcion=" + descripcion + ", listaProductos=" + listaProductos + "]";
+        StringBuilder productos = new StringBuilder();
+        for (Producto p : listaProductos) {
+            productos.append("\n    [").append(p.getId()).append("] ").append(p.getNombre());
+        }
+        return "Categoria [ID = " + getId() + " | Nombre = " + nombre + " | Descripcion = " + descripcion + "]" + productos;
     }
 }
