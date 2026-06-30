@@ -1,4 +1,4 @@
-﻿package ui;
+package ui;
 
 import java.util.List;
 import java.util.Scanner;
@@ -21,12 +21,16 @@ public class UsuarioMenu {
     public void mostrar() {
         int opcion;
         do {
-            System.out.println("\n--- USUARIOS ---");
-            System.out.println("1. Listar");
-            System.out.println("2. Crear");
-            System.out.println("3. Editar");
-            System.out.println("4. Eliminar");
-            System.out.println("0. Volver");
+            System.out.println("");
+            System.out.println("------------------------------");
+            System.out.println("       --- USUARIOS ---       ");
+            System.out.println("------------------------------");
+            System.out.println("        1. Listar             ");
+            System.out.println("        2. Crear              ");
+            System.out.println("        3. Editar             ");
+            System.out.println("        4. Eliminar           ");
+            System.out.println("        0. Volver             ");
+            System.out.println("------------------------------");
             opcion = leerEntero("Seleccione: ");
             switch (opcion) {
                 case 1 -> listar();
@@ -42,7 +46,7 @@ public class UsuarioMenu {
     private void listar() {
         List<Usuario> lista = service.listar();
         if (lista.isEmpty()) { System.out.println("No hay usuarios cargados."); return; }
-        System.out.println("\nID   Nombre          Apellido        Mail                           Rol");
+        System.out.println("\nID  Nombre  Apellido  Mail  Celular  Password  Rol");
         System.out.println("─".repeat(75));
         lista.forEach(System.out::println);
     }
@@ -119,7 +123,7 @@ public class UsuarioMenu {
         }
     }
 
-    // ── input helpers ────────────────────────────────────────────────────
+    // Input Helpers
 
     private int leerEntero(String prompt) {
         while (true) {

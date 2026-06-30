@@ -1,4 +1,4 @@
-﻿package entities;
+package entities;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -92,11 +92,9 @@ public class Pedido extends Base implements Calculable {
     public DetallePedido findDetallePedidoByProducto(Producto producto) {
         for (DetallePedido detallePedido : listaDetallesPedidos) {
             if (detallePedido.getProducto().equals(producto)) {
-                System.out.println("El detalle pedido ha sido encontrado");
                 return detallePedido;
             }
         }
-        System.out.println("El detalle pedido NO ha sido encontrado");
         return null;
     }
 

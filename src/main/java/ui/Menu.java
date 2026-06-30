@@ -1,4 +1,4 @@
-﻿package ui;
+package ui;
 
 import java.util.Scanner;
 
@@ -27,12 +27,18 @@ public class Menu {
     public void mostrar() {
         int opcion;
         do {
-            System.out.println("\n=== SISTEMA DE PEDIDOS (FOOD STORE) ===");
-            System.out.println("1. Categorías");
-            System.out.println("2. Productos");
-            System.out.println("3. Usuarios");
-            System.out.println("4. Pedidos");
-            System.out.println("0. Salir");
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+            System.out.println("");
+            System.out.println("-------------------------------------------");
+            System.out.println("  === SISTEMA DE PEDIDOS (FOOD STORE) ===  ");
+            System.out.println("-------------------------------------------");
+            System.out.println("             1. Categorías                 ");
+            System.out.println("             2. Productos                  ");
+            System.out.println("             3. Usuarios                   ");
+            System.out.println("             4. Pedidos                    ");
+            System.out.println("             0. Salir                      ");
+            System.out.println("-------------------------------------------");
             opcion = leerOpcion();
             switch (opcion) {
                 case 1 -> categoriaMenu.mostrar();
@@ -51,4 +57,3 @@ public class Menu {
         catch (NumberFormatException e) { return -1; }
     }
 }
-

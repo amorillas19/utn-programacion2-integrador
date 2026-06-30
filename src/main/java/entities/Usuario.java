@@ -119,8 +119,8 @@ public class Usuario extends Base {
 
     @Override
     public String toString() {
-        return "Usuario [id=" + getId() + ", nombre=" + nombre + ", apellido=" + apellido + ", mail=" + mail + ", celular=" + celular
-                + ", password=" + password + ", rol=" + rol + "]";
+        return "Usuario [ID: " + getId() + " | Nombre: " + nombre + " | Apellido: " + apellido + " | Mail: " + mail + " | Celular: " + celular
+                + " | Password: " + password + " | Rol: " + rol + "]";
     }
 
 }

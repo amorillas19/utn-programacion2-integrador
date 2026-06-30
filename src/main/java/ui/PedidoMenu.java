@@ -1,4 +1,4 @@
-﻿package ui;
+package ui;
 
 import java.util.List;
 import java.util.Scanner;
@@ -26,13 +26,17 @@ public class PedidoMenu {
     public void mostrar() {
         int opcion;
         do {
-            System.out.println("\n--- PEDIDOS ---");
-            System.out.println("1. Listar");
-            System.out.println("2. Crear pedido");
-            System.out.println("3. Ver detalle de pedido");
-            System.out.println("4. Actualizar estado / forma de pago");
-            System.out.println("5. Eliminar");
-            System.out.println("0. Volver");
+            System.out.println("");
+            System.out.println("------------------------------");
+            System.out.println("        --- PEDIDOS ---       ");
+            System.out.println("------------------------------");
+            System.out.println("    1. Listar                 ");
+            System.out.println("    2. Crear pedido           ");
+            System.out.println("    3. Ver detalle de pedido  ");
+            System.out.println("    4. Actualizar estado / forma de pago");
+            System.out.println("    5. Eliminar               ");
+            System.out.println("    0. Volver                 ");
+            System.out.println("------------------------------");
             opcion = leerEntero("Seleccione: ");
             switch (opcion) {
                 case 1 -> listar();
@@ -57,7 +61,7 @@ public class PedidoMenu {
             lista = service.listar();
         }
         if (lista.isEmpty()) { System.out.println("No hay pedidos."); return; }
-        System.out.println("\nID   Fecha       Estado       Pago            Total        Usuario");
+        System.out.println("\nID  Fecha  Estado  Pago  Total  Usuario");
         System.out.println("─".repeat(80));
         lista.forEach(System.out::println);
     }
@@ -189,7 +193,7 @@ public class PedidoMenu {
         }
     }
 
-    // ── input helpers ────────────────────────────────────────────────────
+    // Input Helpers
 
     private int leerEntero(String prompt) {
         while (true) {
