@@ -10,6 +10,7 @@ import java.util.List;
 
 import config.DatabaseConnection;
 import entities.Categoria;
+import entities.Producto;
 import exception.DAOException;
 
 public class CategoriaDAO implements GenericDAO<Categoria> {
@@ -63,7 +64,7 @@ public class CategoriaDAO implements GenericDAO<Categoria> {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setLong(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) return mapRow(rs);
+                if (rs.next()) return mapRow(rs, conn);
             }
         } catch (SQLException e) {
             throw new DAOException("Error al buscar categoría: " + e.getMessage(), e);
@@ -78,20 +79,47 @@ public class CategoriaDAO implements GenericDAO<Categoria> {
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
-            while (rs.next()) list.add(mapRow(rs));
+            while (rs.next()) list.add(mapRow(rs, conn));
         } catch (SQLException e) {
             throw new DAOException("Error al listar categorías: " + e.getMessage(), e);
         }
         return list;
     }
 
-    private Categoria mapRow(ResultSet rs) throws SQLException {
-        return new Categoria(
+    // recibe la conexión para reutilizarla en la segunda query
+    private Categoria mapRow(ResultSet rs, Connection conn) throws SQLException {
+        Categoria categoria = new Categoria(
                 rs.getLong("id"),
                 rs.getString("nombre"),
                 rs.getString("descripcion"),
                 rs.getBoolean("eliminado"),
                 rs.getTimestamp("created_at").toLocalDateTime()
         );
+        cargarProductos(categoria, conn);
+        return categoria;
+    }
+
+    private void cargarProductos(Categoria categoria, Connection conn) throws SQLException {
+        String sql = "SELECT * FROM productos WHERE categoria_id=? AND eliminado=false";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setLong(1, categoria.getId());
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Producto p = new Producto(
+                            rs.getLong("id"),
+                            rs.getString("nombre"),
+                            rs.getDouble("precio"),
+                            rs.getString("descripcion"),
+                            rs.getInt("stock"),
+                            rs.getString("imagen"),
+                            rs.getBoolean("disponible"),
+                            rs.getBoolean("eliminado"),
+                            rs.getTimestamp("created_at").toLocalDateTime(),
+                            categoria
+                    );
+                    categoria.getListaProductos().add(p);
+                }
+            }
+        }
     }
 }

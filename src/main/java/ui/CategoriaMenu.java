@@ -20,7 +20,7 @@ public class CategoriaMenu {
     public void mostrar() {
         int opcion;
         do {
-            System.out.println("\n--- CATEGORÍAS ---");
+            System.out.println("\n--- CATEGORIAS ---");
             System.out.println("1. Listar");
             System.out.println("2. Crear");
             System.out.println("3. Editar");

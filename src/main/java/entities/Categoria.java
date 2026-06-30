@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Categoria extends Base{
+public class Categoria extends Base {
     private String nombre;
     private String descripcion;
     private List<Producto> listaProductos;
@@ -24,6 +24,7 @@ public class Categoria extends Base{
         super(id, eliminado, createdAt);
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.listaProductos = new ArrayList<>(); // fix: antes quedaba null
     }
 
     public String getNombre() {
@@ -46,7 +47,7 @@ public class Categoria extends Base{
         return listaProductos;
     }
 
-    public void addProducto (Producto producto){
+    public void addProducto(Producto producto) {
         if (producto != null) {
             producto.setCategoria(this);
             listaProductos.add(producto);
@@ -58,7 +59,7 @@ public class Categoria extends Base{
         return Collections.unmodifiableList(listaProductos);
     }
 
-    public void deleteProducto (Producto producto) {
+    public void deleteProducto(Producto producto) {
         Producto aux = null;
         if (producto != null) {
             producto.setCategoria(null);
@@ -75,9 +76,6 @@ public class Categoria extends Base{
 
     @Override
     public String toString() {
-        return "Categoria [id=" + getId() + ", nombre=" + nombre + ", descripcion=" + descripcion + ", listaProductos=" + listaProductos
-                + "]";
+        return "Categoria [id=" + getId() + ", nombre=" + nombre + ", descripcion=" + descripcion + ", listaProductos=" + listaProductos + "]";
     }
-
-    
 }

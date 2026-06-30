@@ -15,7 +15,7 @@ public class Producto extends Base {
         super();
     }
 
-    /* Categoria se recibe por setter */
+    
     public Producto(String nombre, double precio, String descripcion, 
         int stock, String imagen, boolean disponible, Categoria categoria) {
         super();
