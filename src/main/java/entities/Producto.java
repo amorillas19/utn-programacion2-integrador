@@ -1,4 +1,4 @@
-﻿package entities;
+package entities;
 
 import java.time.LocalDateTime;
 
@@ -100,16 +100,15 @@ public class Producto extends Base {
     @Override
     public String toString() {
         if (this.categoria == null) {
-            return "Producto [id=" + getId() + ", nombre=" + nombre + ", precio=" + precio + ", descripcion=" + descripcion + ", stock="
+            return "Producto [ID = " + getId() + " | Nombre = " + nombre + " | Precio = " + precio + " | Descripción = " + descripcion + " | Stock = "
                     + stock
-                    + ", imagen=" + imagen + ", disponible=" + disponible + ", categoria= null" + "]";
+                    + " | Imagen = " + imagen + " | Disponible = " + disponible + " | Categoría = null" + "]";
         } else {
-            return "Producto [id=" + getId() + ", nombre=" + nombre + ", precio=" + precio + ", descripcion=" + descripcion + ", stock="
+            return "Producto [ID = " + getId() + " | Nombre = " + nombre + " | Precio = " + precio + " | Descripción = " + descripcion + " | Stock = "
                     + stock
-                    + ", imagen=" + imagen + ", disponible=" + disponible + ", categoria=" + categoria.getNombre()
+                    + " | Imagen = " + imagen + " | Disponible = " + disponible + " | Categoría = " + categoria.getNombre()
                     + "]";
         }
-
     }
 
     @Override
