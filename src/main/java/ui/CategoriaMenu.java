@@ -1,4 +1,4 @@
-﻿package ui;
+package ui;
 
 import java.util.List;
 import java.util.Scanner;
@@ -20,12 +20,16 @@ public class CategoriaMenu {
     public void mostrar() {
         int opcion;
         do {
-            System.out.println("\n--- CATEGORIAS ---");
-            System.out.println("1. Listar");
-            System.out.println("2. Crear");
-            System.out.println("3. Editar");
-            System.out.println("4. Eliminar");
-            System.out.println("0. Volver");
+            System.out.println("");
+            System.out.println("------------------------------");
+            System.out.println("      --- CATEGORIAS ---      ");
+            System.out.println("------------------------------");
+            System.out.println("         1. Listar            ");
+            System.out.println("         2. Crear             ");
+            System.out.println("         3. Editar            ");
+            System.out.println("         4. Eliminar          ");
+            System.out.println("         0. Volver            ");
+            System.out.println("------------------------------");
             opcion = leerEntero("Seleccione: ");
             switch (opcion) {
                 case 1 -> listar();
@@ -44,7 +48,7 @@ public class CategoriaMenu {
             System.out.println("No hay categorías cargadas.");
             return;
         }
-        System.out.println("\nID   Nombre               Descripción");
+        System.out.println("\nID  Nombre  Descripción");
         System.out.println("─".repeat(50));
         lista.forEach(System.out::println);
     }
@@ -95,7 +99,7 @@ public class CategoriaMenu {
         }
     }
 
-    // ── input helpers ────────────────────────────────────────────────────
+    // Input Helpers
 
     private int leerEntero(String prompt) {
         while (true) {
@@ -127,4 +131,3 @@ public class CategoriaMenu {
         return scanner.nextLine().trim();
     }
 }
-
